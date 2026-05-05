@@ -24,26 +24,26 @@
 
 ### 技术架构概览
 
-赛博小镇采用<strong>游戏引擎+后端服务</strong>的分离架构，分为四个层次，如图 15.1 所示。
+赛博小镇采用<strong>游戏引擎+后端服务</strong>的分离架构，分为四个层次，如下图所示。
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/15-figures/15-1.png" alt="" width="85%"/>
-  <p>图 15.1 赛博小镇技术架构</p>
+  <p>图 1 赛博小镇技术架构</p>
 </div>
 
-前端层使用 Godot 4.5 游戏引擎，负责游戏渲染、玩家控制、NPC 显示和对话 UI。Godot 是一个开源的 2D/3D 游戏引擎，非常适合快速开发像素风格的游戏。后端层使用 FastAPI 框架，负责 API 路由、NPC 状态管理、对话处理和日志记录。FastAPI 是一个现代化的 Python Web 框架，性能优秀且易于开发。智能体层使用我们自己构建的 HelloAgents 框架，负责 NPC 智能、记忆管理和好感度计算。每个 NPC 都是一个 SimpleAgent 实例，拥有独立的记忆和状态。外部服务层提供 LLM 能力、向量存储和数据持久化，包括 LLM API、Qdrant 向量数据库和 SQLite 关系数据库。
+前端层使用 Godot 4.6 游戏引擎，负责游戏渲染、玩家控制、NPC 显示和对话 UI。Godot 是一个开源的 2D/3D 游戏引擎，非常适合快速开发像素风格的游戏。后端层使用 FastAPI 框架，负责 API 路由、NPC 状态管理、对话处理和日志记录。FastAPI 是一个现代化的 Python Web 框架，性能优秀且易于开发。智能体层使用开源的 HelloAgents 框架，负责 NPC 智能、记忆管理和好感度计算。每个 NPC 都是一个 SimpleAgent 实例，拥有独立的记忆和状态。外部服务层提供 LLM 能力、向量存储和数据持久化，包括 LLM API、Qdrant 向量数据库和 SQLite 关系数据库。
 
-数据流转过程如图 15.2 所示：
+数据流转过程如下图所示：
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/15-figures/15-2.png" alt="" width="85%"/>
-  <p>图 15.2 数据流转过程</p>
+  <p>图 2 数据流转过程</p>
 </div>
 
 
 玩家在 Godot 中按 E 键与 NPC 互动，Godot 通过 HTTP API 发送对话请求到 FastAPI 后端。后端调用 HelloAgents 的 SimpleAgent 处理对话，Agent 从记忆系统中检索相关历史，然后调用 LLM 生成回复。后端更新 NPC 状态和好感度，记录日志到控制台和文件，最后返回回复给 Godot 前端。Godot 显示 NPC 回复并更新 UI，完成一次完整的交互循环。
 
-项目的结构如下，方便你定位源码:
+项目的结构如下:
 
 ```
 Helloagents-AI-Town/
@@ -76,24 +76,24 @@ Helloagents-AI-Town/
     ├── config.py                  # 配置管理
     ├── models.py                  # 数据模型
     ├── requirements.txt           # Python依赖
-    └── .env.example               # 环境变量示例
+    └── .env                       # 环境变量
 ```
 
 详细的架构设计和数据流转将在后续的补充中介绍。
 
 ## 🎮效果预览
-游戏启动后，你会看到一个像素风格的 Datawhale 办公室场景，如图 15.3 所示。
+游戏启动后，你会看到一个像素风格的 Datawhale 办公室场景，美术等相关资源包是从Datawhale获取的，如下图所示。
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/15-figures/15-3.png" alt="" width="85%"/>
-  <p>图 1 赛博小镇游戏场景</p>
+  <p>图 3 赛博小镇游戏场景</p>
 </div>
 
-使用 WASD 键移动玩家角色，走到 NPC 附近时，屏幕上会显示"按 E 键交互"的提示。按下 E 键后，会弹出对话框，你可以输入任何想说的话，如图 15.4 所示。
+使用 WASD 键移动玩家角色，走到 NPC 附近时，屏幕上会显示"按 E 键交互"的提示。按下 E 键后，会弹出对话框，你可以输入任何想说的话，如图所示。
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/15-figures/15-4.png" alt="" width="85%"/>
-  <p>图 2 与 NPC 对话界面</p>
+  <p>图 4 与 NPC 对话界面</p>
 </div>
 
 NPC 会根据自己的角色设定(Python 工程师、产品经理、UI 设计师)和你们的互动历史做出回应。随着对话的进行，NPC 对你的好感度会逐渐提升，从"陌生"到"熟悉"，再到"友好"、"亲密"甚至"挚友"。
@@ -103,14 +103,13 @@ NPC 会根据自己的角色设定(Python 工程师、产品经理、UI 设计�
 
 ## 总结与展望
 
-
 在本项目中，我们完成了一个完整的 AI 小镇项目——赛博小镇。这个项目将 HelloAgents 框架与 Godot 游戏引擎结合，创造出了一个充满生命力的虚拟世界。
 
-整个项目的技术栈如图 15.15 所示：
+整个项目的技术栈如下图所示：
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/15-figures/15-15.png" alt="" width="85%"/>
-  <p>图 15.15 赛博小镇技术栈</p>
+  <p>图 5 赛博小镇技术栈</p>
 </div>
 
 
