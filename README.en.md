@@ -133,7 +133,7 @@ AI-Npc-Town/
 │   ├── agents.py                  #   NPC agent system (personas + memory)
 │   ├── relationship_manager.py    #   Affinity management
 │   ├── state_manager.py           #   NPC state management
-│   ├── memory_data/               #   Memory data
+│   ├── .env.example               #   Environment variable template
 │   ├── models.py                  #   Data models
 │   ├── logger.py                  #   Logging
 │   ├── config.py                  #   Configuration
@@ -167,7 +167,12 @@ uvicorn main:app --reload
 
 ### 2. Configure the API key
 
-Fill in your LLM API key and related settings in `backend/.env`.
+Copy the template and fill in your LLM API key:
+
+```bash
+cp backend/.env.example backend/.env
+# edit backend/.env, set LLM_API_KEY and related settings
+```
 
 ### 3. Run the game
 

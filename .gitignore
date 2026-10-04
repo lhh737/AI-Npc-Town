@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# === AI Town runtime data (generated, not source) ===
+backend/logs/
+backend/memory_data/
+backend/__pycache__/
+backend/venv/
+*.pyc
