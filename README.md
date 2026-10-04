@@ -3,7 +3,6 @@
 # 🌆 AI Npc Town · 赛博小镇
 
 **Godot + FastAPI + LLM Agent 构建的 AI NPC 交互系统**
-An AI NPC interaction system built with Godot, FastAPI and LLM Agents
 
 [![Godot](https://img.shields.io/badge/Godot-4.6-478CBF?style=flat-square&logo=godot&logoColor=white)](https://godotengine.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
@@ -11,21 +10,21 @@ An AI NPC interaction system built with Godot, FastAPI and LLM Agents
 [![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-DC244C?style=flat-square)](https://qdrant.tech/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](./LICENSE)
 
-> **项目状态：开发中 / Under active development** — 核心系统已跑通，代码整理与文档完善进行中。
+[中文](README.md) | [English](README.en.md)
+
+> **项目状态：开发中** — 核心系统已跑通，代码整理与文档完善进行中。
 
 </div>
 
 ---
 
-## Introduction | 项目构想
+## 项目构想
 
 传统游戏中的 NPC 只能说出固定台词，或通过预设对话树进行有限互动——即便最复杂的 RPG，人物对话也是编剧事先写好的。这种方式可控，但缺乏真正的"生命力"。
 
 本项目探索另一个方向：**当游戏 NPC 接入大语言模型**。玩家可以用自然语言自由交流，NPC 拥有各自的角色设定、说话风格与长期记忆，会记得你上次说了什么、你们的关系如何、你的偏好是什么，并据此调整态度。
 
-An experiment in giving game NPCs genuine conversational ability by wiring an LLM agent into the game loop. Instead of fixed dialogue trees, each NPC is an agent with its own persona, short/long-term memory and an affinity score that evolves through interaction.
-
-### 核心玩法 | Core Features
+### 核心玩法
 
 | 模块 | 说明 |
 |------|------|
@@ -35,7 +34,7 @@ An experiment in giving game NPCs genuine conversational ability by wiring an LL
 | **角色设定** | 每个 NPC 独立的职业、性格、专长与说话风格 |
 | **实时日志** | 对话与好感度变化全量记录，可追溯分析 |
 
-## Architecture | 技术架构
+## 技术架构
 
 ```
 ┌──────────────────────────────────────────────────────┐
@@ -63,7 +62,7 @@ An experiment in giving game NPCs genuine conversational ability by wiring an LL
 └──────────────────────────────────────────────────────┘
 ```
 
-### 数据流转 | Data Flow
+### 数据流转
 
 ```
 玩家按 E 键
@@ -77,7 +76,7 @@ An experiment in giving game NPCs genuine conversational ability by wiring an LL
    → UI 更新，完成一次交互循环
 ```
 
-## NPC Characters | NPC 角色设定
+## NPC 角色设定
 
 | NPC | 职业 | 性格 | 说话风格 |
 |-----|------|------|----------|
@@ -87,17 +86,17 @@ An experiment in giving game NPCs genuine conversational ability by wiring an LL
 
 > 每个 NPC 的设定（职业 / 位置 / 行为 / 性格 / 专长 / 风格 / 爱好）均为结构化配置，Agent 在生成回复时以角色 Prompt 注入。
 
-## Demo | 效果展示
+## 效果展示
 
 <div align="center">
-  <img src="docs/demo1.png" alt="游戏场景" width="85%">
+  <img src="docs/demo1.png" alt="游戏场景" width="700">
   <br><em>图 1 · 像素风格办公室场景，WASD 移动，靠近 NPC 显示交互提示</em>
   <br><br>
-  <img src="docs/demo2.png" alt="NPC 对话界面" width="85%">
+  <img src="docs/demo2.png" alt="NPC 对话界面" width="700">
   <br><em>图 2 · 与 NPC 的自然语言对话界面</em>
 </div>
 
-## Project Structure | 项目结构
+## 项目结构
 
 ```
 AI-Npc-Town/
@@ -141,7 +140,7 @@ AI-Npc-Town/
     └── SETUP_GUIDE.md             #   环境搭建指南
 ```
 
-## Setup | 环境搭建
+## 环境搭建
 
 ### 前置要求
 
@@ -175,7 +174,7 @@ uvicorn main:app --reload
 
 > 详细步骤见 `docs/SETUP_GUIDE.md`
 
-## Affinity System | 好感度系统
+## 好感度系统
 
 好感度在后端实现——每次对话根据玩家消息的内容与情感分析调整好感度值。
 
@@ -192,7 +191,7 @@ uvicorn main:app --reload
 
 > 详细设计见 `docs/AFFINITY_SYSTEM_GUIDE.md`
 
-## Roadmap | 开发计划
+## 开发计划
 
 - [x] Godot 前端场景与角色控制
 - [x] FastAPI 后端与 NPC Agent 系统
@@ -203,7 +202,7 @@ uvicorn main:app --reload
 - [ ] 更多 NPC 与场景扩展
 - [ ] 记忆检索策略优化
 
-## Discussion | 思考与展望
+## 思考与展望
 
 AI NPC 展示了 LLM 在游戏中的潜力，但有三个现实挑战：
 
